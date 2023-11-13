@@ -1,13 +1,13 @@
 {
   "name": "practica-to-do",
   "version": "1.0.0",
-  "description": "",
+  "description": "practica tarea",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "jabuile",
   "license": "ISC",
   "dependencies": {
     "express": "^4.18.2"
