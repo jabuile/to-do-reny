@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1mostrar productos</title>
+    <style>
+        thead,
+tfoot {
+  background-color: #3f87a6;
+  color: #fff;
+}
+
+tbody {
+  background-color: #e4f0f5;
+}
+
+caption {
+  padding: 10px;
+  caption-side: bottom;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(200, 200, 200);
+  letter-spacing: 1px;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+}
+
+td,
+th {
+  border: 1px solid rgb(190, 190, 190);
+  padding: 5px 10px;
+}
+
+td {
+  text-align: center;
+}
+
+    </style>
+</head>
+<body>
+    <h1>Productos disponilbles</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>nombre</th>
+                <th>price</th>
+            </tr>
+        </thead>
+       <% for (let product of products){ %>
+
+        <tr>
+            <td><%= product.NombreProducto %> </td>
+            <td><%= product.precio %> </td>
+        </tr>
+       <% } %>
+        
+       </table>
+</body>
+</html>
+
+<!-- <li><%= products[0].NombreProducto %></li>
+        <li><%= products[1].NombreProducto %></li> -->

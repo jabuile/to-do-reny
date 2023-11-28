@@ -10,6 +10,9 @@
   "author": "jabuile",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2"
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mysql": "^2.18.1",
+    "mysql2": "^3.6.5"
   }
 }
