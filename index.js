@@ -33,7 +33,7 @@ app.get("/mostrarJSON", function(req,res){
 
 });
 
-app.get("/mostrar.html", function(req,res){
+app.get("/mostrar", function(req,res){
     const sql = "SELECT * FROM productosdisponibles";
     conexion.query(sql,function(error, results, fields){
         if (error){
@@ -66,6 +66,21 @@ app.post("/validar", function(req,res){
         }
     })
     console.log(datos)
+});
+
+
+app.post("/delete/:id", function(req,res){
+    const msql = "DELETE  FROM productosdisponibles where IdProducto =" + id;
+    conexion.query(msql,function(error, results, fields){
+        if (error){
+            throw error;
+        }
+        
+        res.render("mostrar", {products:results});
+        
+    });
+        
+
 });
 
 

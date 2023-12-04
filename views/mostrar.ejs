@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>1mostrar productos</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <style>
         thead,
 tfoot {
@@ -45,8 +47,10 @@ td {
     <table>
         <thead>
             <tr>
-                <th>nombre</th>
+                <th>name</th>
                 <th>price</th>
+                <th>edit</th>
+                <th>delete</th>
             </tr>
         </thead>
        <% for (let product of products){ %>
@@ -54,8 +58,19 @@ td {
         <tr>
             <td><%= product.NombreProducto %> </td>
             <td><%= product.precio %> </td>
+            <td><span onclick="alert('jhf')" class="material-icons">edit_document</span></td>
+            <td>
+                <form action="/delete/<%=product.IDProducto%>" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
+                    <button type="submit" class="material-icons" style="border: none; background-color: transparent; cursor: pointer;">delete</button>
+                </form>
+            </td>
+            
+            <!-- <td><span action="/delete/<%=product.IDProducto%>"  class="material-icons">delete</span></td> -->
+
         </tr>
        <% } %>
+
+
         
        </table>
 </body>
