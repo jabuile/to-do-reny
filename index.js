@@ -47,6 +47,24 @@ app.get("/mostrar", function(req,res){
 
 });
 
+//new code to edit database elements
+app.get("/mostraru/:id", function(req,res){
+    const id = req.params.id;
+    const sql = "SELECT * FROM productosdisponibles where IdProducto =" + id ;
+    
+    conexion.query(sql,function(error, resultsudp, fields){
+        if (error){
+            throw error;
+        }
+        console.log(resultsudp)
+        res.render("registro", {product:resultsudp[0]});
+        
+    });
+        
+
+});
+//end of edit
+
 
 
 
@@ -70,14 +88,23 @@ app.post("/validar", function(req,res){
 
 
 app.post("/delete/:id", function(req,res){
+    const id = req.params.id;
     const msql = "DELETE  FROM productosdisponibles where IdProducto =" + id;
-    conexion.query(msql,function(error, results, fields){
-        if (error){
+    conexion.query(msql,[id],function(error, results, fields){
+        if (error){ 
             throw error;
         }
         
-        res.render("mostrar", {products:results});
-        
+        const sql2 = "SELECT * FROM productosdisponibles";
+        conexion.query(sql2,function(error, results2, fields2){
+            if (error){
+                throw error;
+            }
+            
+            res.render("mostrar", {products:results2});
+            
+        });
+            
     });
         
 

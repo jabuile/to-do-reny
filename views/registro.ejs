@@ -13,13 +13,13 @@
     
     <h1>Registro de nuevos usuarios</h1>
     <form action="/validar" method="post">
-        IDProducto: <input type="number" name="idp" id="idp"><br><br>
+        IDProducto: <input type="number" name="idp" id="idp" value ="<%= product===undefined ? '' : product.IdProducto %>" ><br><br>
 
-        NombreProducto: <input type="text" name="np" id="np"><br><br>
+        NombreProducto: <input type="text" name="np" id="np" value="<%= product===undefined ? '' : product.NombreProducto %>"><br><br>
 
-        Precio: <input type="int" name = "precio" id="precio"><br><br>
+        Precio: <input type="int" name = "precio" id="precio" value="<%= product===undefined ? '' : product.precio %>" ><br><br>
 
-        Descripcion: <input type="text" name="descripcion" id="descripcion"><br><br>
+        Descripcion: <input type="text" name="descripcion" id="descripcion" value="<%= product===undefined ? '' : product.Descripcion %>"><br><br>
 
         <input type="submit" value="registrar">
     </form>

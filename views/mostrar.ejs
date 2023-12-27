@@ -58,15 +58,18 @@ td {
         <tr>
             <td><%= product.NombreProducto %> </td>
             <td><%= product.precio %> </td>
-            <td><span onclick="alert('jhf')" class="material-icons">edit_document</span></td>
+             <!-- <td><span onclick="alert('jhf')" class="material-icons">edit_document</span></td> -->
             <td>
-                <form action="/delete/<%=product.IDProducto%>" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
+              <form action="<%= '/mostraru/'+product.IdProducto %>" method="get" onsubmit="return confirm('¿Desea actualizaer este producto?');">
+                  <button type="submit" class="material-icons" style="border: none; background-color: transparent; cursor: pointer;">edit_document</button>
+              </form>
+          </td>
+            <td>
+                <form action="<%= '/delete/'+product.IdProducto %>" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este producto?');">
                     <button type="submit" class="material-icons" style="border: none; background-color: transparent; cursor: pointer;">delete</button>
                 </form>
             </td>
-            
-            <!-- <td><span action="/delete/<%=product.IDProducto%>"  class="material-icons">delete</span></td> -->
-
+                        
         </tr>
        <% } %>
 
@@ -75,6 +78,3 @@ td {
        </table>
 </body>
 </html>
-
-<!-- <li><%= products[0].NombreProducto %></li>
-        <li><%= products[1].NombreProducto %></li> -->
