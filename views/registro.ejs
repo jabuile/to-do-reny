@@ -13,7 +13,7 @@
     
     <h1>Registro de nuevos usuarios</h1>
     <form action="/validar" method="post">
-        IDProducto: <input type="number" name="idp" id="idp" value ="<%= product===null ? '' : product.IdProducto %>" ><br><br>
+        IDProducto: <%= product===null ? '' : product.IdProducto %> <input type="hidden" name="idp" id="idp" value ="<%= product===null ? '' : product.IdProducto %>" ><br><br>
 
         NombreProducto: <input type="text" name="np" id="np" value="<%= product===null ? '' : product.NombreProducto %>"><br><br>
 
@@ -21,7 +21,7 @@
 
         Descripcion: <input type="text" name="descripcion" id="descripcion" value="<%= product===null ? '' : product.Descripcion %>"><br><br>
 
-        <input type="submit" value="registrar">
+        <input type="submit" value="<%= nuevo ? 'registrar' : 'actualizar' %>">
     </form>
 </body>
 </html>

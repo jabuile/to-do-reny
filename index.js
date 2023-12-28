@@ -15,8 +15,9 @@ const conexion = mysql.createConnection({
 app.use(express.urlencoded({ extended:false }));
 
 app.get("/", function(req,res){
+    const nuevo = true;
     const product= null;
-    res.render("registro", { product});
+    res.render("registro", { product, nuevo});
 });
 
 app.get("/mostrarJSON", function(req,res){
@@ -49,8 +50,11 @@ app.get("/mostrar", function(req,res){
 });
 
 //new code to edit database elements
+
 app.get("/mostraru/:id", function(req,res){
+
     const id = req.params.id;
+    const nuevo = isNew(id)
     const sql = "SELECT * FROM productosdisponibles where IdProducto =" + id ;
     
     conexion.query(sql,function(error, resultsudp, fields){
@@ -58,7 +62,7 @@ app.get("/mostraru/:id", function(req,res){
             throw error;
         }
         console.log(resultsudp)
-        res.render("registro", {product:resultsudp[0]});
+        res.render("registro", {product:resultsudp[0],nuevo});
         
     });
         
@@ -66,7 +70,9 @@ app.get("/mostraru/:id", function(req,res){
 });
 //end of edit
 
-
+function isNew (id) {
+    return id===null || id==="" || id ===" "
+};
 
 
 app.post("/validar", function(req,res){
@@ -75,9 +81,10 @@ app.post("/validar", function(req,res){
     const producto=datos.np;
     const valor=datos.precio;
     const descrip=datos.descripcion;
-    
+
     let registrar = null;
-    if (id===null || id==="" || id ===" "){
+    const nuevo = isNew(id)
+    if (nuevo){
         registrar ="INSERT INTO productosdisponibles ( NombreProducto, precio, Descripcion) VALUES ('"+producto+"', '"+valor+"', '"+descrip+"')"
     }else{
         registrar = `UPDATE tablaprueba.productosdisponibles SET NombreProducto = '${producto}', precio =${valor}, Descripcion ='${descrip}' where IdProducto=${id}` 
