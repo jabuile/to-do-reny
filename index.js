@@ -15,7 +15,8 @@ const conexion = mysql.createConnection({
 app.use(express.urlencoded({ extended:false }));
 
 app.get("/", function(req,res){
-    res.render("registro");
+    const product= null;
+    res.render("registro", { product});
 });
 
 app.get("/mostrarJSON", function(req,res){
@@ -74,14 +75,23 @@ app.post("/validar", function(req,res){
     const producto=datos.np;
     const valor=datos.precio;
     const descrip=datos.descripcion;
+    
+    let registrar = null;
+    if (id===null || id==="" || id ===" "){
+        registrar ="INSERT INTO productosdisponibles ( NombreProducto, precio, Descripcion) VALUES ('"+producto+"', '"+valor+"', '"+descrip+"')"
+    }else{
+        registrar = `UPDATE tablaprueba.productosdisponibles SET NombreProducto = '${producto}', precio =${valor}, Descripcion ='${descrip}' where IdProducto=${id}` 
+    };
+    console.log(registrar);
 
-    const registrar ="INSERT INTO productosdisponibles (IDProducto, NombreProducto, precio, Descripcion) VALUES ('"+id +"', '"+producto+"', '"+valor+"', '"+descrip+"')"
+    
     conexion.query(registrar,function(error){
         if (error){
             throw error;
-        }else{
-            console.log("datos almacenados en una base de datos ");
         }
+        res.redirect("/mostrar")
+        console.log("datos almacenados en una base de datos ");
+        
     })
     console.log(datos)
 });
